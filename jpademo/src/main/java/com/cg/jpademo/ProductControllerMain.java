@@ -13,6 +13,8 @@ public class ProductControllerMain {
 		
 		ProductController productController = context.getBean(ProductController.class);
 		
+		//ProductController productController = new 	ProductController();
+		
 		ProductEntity productEntity = new ProductEntity();
 		productEntity.setProductId(20);
 		productEntity.setProductName("IPhoneZ++");
