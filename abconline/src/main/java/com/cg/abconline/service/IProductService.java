@@ -2,14 +2,14 @@ package com.cg.abconline.service;
 
 import java.util.List;
 
-import com.cg.abconline.entity.ProductEntity;
+import com.cg.abconline.model.Product;
 
 public interface IProductService {
 	
-	public ProductEntity saveProduct(ProductEntity productEntity);
+	public Product saveProduct(Product product);
 	
-	public ProductEntity findProductById(int productId);
+	public Product findProductById(int productId);
 	
-	public List<ProductEntity> findAllProducts();
+	public List<Product> findAllProducts();
 
 }

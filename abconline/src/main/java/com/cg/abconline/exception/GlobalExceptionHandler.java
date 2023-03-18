@@ -1,5 +1,7 @@
 package com.cg.abconline.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -7,7 +9,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public String handleResourceNotFoundException(Exception e) {
-		return e.getMessage();
+	public ResponseEntity<String> handleResourceNotFoundException(Exception e) {
+		ResponseEntity<String> responseEntity = new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+		return responseEntity;
 	}	
+	
+	
 }
