@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 function FetchAllProducts() {
 
@@ -17,10 +18,11 @@ function FetchAllProducts() {
             {
                 products.map(p =>
                     <div key={p.productId}>
-                        {p.productId} {p.productName} {p.productPrice} {p.createdDate} {p.category}
+                        {p.productId} {p.productName} {p.productPrice} <Link to={`/product/get/${p.productId}`}>View Details</Link>
                     </div>
-                )
+                )                
             }
+            <Link to="/">Back To Home</Link>
         </div>
     )
 }
