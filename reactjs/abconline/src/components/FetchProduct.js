@@ -13,7 +13,7 @@ function FetchProduct() {
         })
     },[])
 
-    return(<div>
+    return(<div className='container'>
         <h1>Product Details</h1>
         {
             product !== null && 
@@ -25,7 +25,7 @@ function FetchProduct() {
                     <p>Category: {product.category}</p>
                 </div>
         }
-         <Link to="/">Back To Home</Link>
+         <Link to="/" className="btn btn-info">Back To Home</Link>
     </div>)
 }
 
