@@ -25,7 +25,7 @@ public class ProductEntity {
 	private double productPrice;
 	
 	@Column(name="created_on")
-	private LocalDate createdDate;
+	private LocalDate createDate;
 	
 	private String category;
 
@@ -53,12 +53,13 @@ public class ProductEntity {
 		this.productPrice = productPrice;
 	}
 
-	public LocalDate getCreatedDate() {
-		return createdDate;
+
+	public LocalDate getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreatedDate(LocalDate createdDate) {
-		this.createdDate = createdDate;
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
 	}
 
 	public String getCategory() {

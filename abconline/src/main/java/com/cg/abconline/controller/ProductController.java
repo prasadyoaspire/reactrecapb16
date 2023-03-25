@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.cg.abconline.model.Product;
 import com.cg.abconline.service.IProductService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
 	@Autowired
@@ -23,21 +25,20 @@ public class ProductController {
 	@PostMapping("/product/save")
 	public ResponseEntity<Product> addProduct(@RequestBody Product product) {
 		Product newProduct = productService.saveProduct(product);
-		ResponseEntity<Product> responseEntity = new ResponseEntity<>(newProduct,HttpStatus.CREATED);
-		return responseEntity;		
+		return new ResponseEntity<>(newProduct,HttpStatus.CREATED);
+	
 	}
 	
 	@GetMapping("/product/{productId}")
 	public  ResponseEntity<Product>  getProduct(@PathVariable("productId") int productId) {
 		Product product = productService.findProductById(productId);
-		ResponseEntity<Product> responseEntity = new ResponseEntity<>(product,HttpStatus.OK);
-		return responseEntity;
+		return new ResponseEntity<>(product,HttpStatus.OK);
+		
 	}
 	
 	@GetMapping("/product/all")
-	public List<Product> getAllProduct() {
-		List<Product> products = productService.findAllProducts();
-		return products;
+	public List<Product> getAllProduct() {		
+		return productService.findAllProducts();
 	}
 	
 	

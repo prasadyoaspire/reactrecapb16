@@ -29,6 +29,9 @@ class ProductServiceTest {
 	
 	@Mock
 	IProductRepository productRepository;
+	
+	 @Mock
+     private BeanUtils beanUtils;
 
 	@Test
 	void findProductByIdTest() {	
@@ -37,7 +40,7 @@ class ProductServiceTest {
 		productEntity.setProductId(10);
 		productEntity.setProductName("IPhoneY++");
 		productEntity.setProductPrice(50000);
-		productEntity.setCreatedDate(LocalDate.now());
+		productEntity.setCreateDate(LocalDate.now());
 		productEntity.setCategory("Mobile");
 		
 		Optional<ProductEntity> optionalProductEntity = Optional.of(productEntity);
@@ -67,21 +70,21 @@ class ProductServiceTest {
 		productEntity1.setProductId(10);
 		productEntity1.setProductName("IPhoneX++");
 		productEntity1.setProductPrice(50000);
-		productEntity1.setCreatedDate(LocalDate.now());
+		productEntity1.setCreateDate(LocalDate.now());
 		productEntity1.setCategory("Mobile");
 		
 		ProductEntity productEntity2 = new ProductEntity();
 		productEntity2.setProductId(20);
 		productEntity2.setProductName("IPhoneY++");
 		productEntity2.setProductPrice(50000);
-		productEntity2.setCreatedDate(LocalDate.now());
+		productEntity2.setCreateDate(LocalDate.now());
 		productEntity2.setCategory("Mobile");
 		
 		ProductEntity productEntity3 = new ProductEntity();
 		productEntity3.setProductId(30);
 		productEntity3.setProductName("IPhoneZ++");
 		productEntity3.setProductPrice(50000);
-		productEntity3.setCreatedDate(LocalDate.now());
+		productEntity3.setCreateDate(LocalDate.now());
 		productEntity3.setCategory("Mobile");
 		
 		List<ProductEntity> productEntities = new ArrayList<>();
@@ -94,5 +97,27 @@ class ProductServiceTest {
 		List<Product> products = productService.findAllProducts();
 		assertEquals(productEntities.size(),products.size());		
 	}	
+	
+	@Test
+	void saveProductTest() {
+		
+		Product product = new Product();
+		product.setProductId(10);
+		product.setProductName("IPhoneY++");
+		product.setProductPrice(50000);
+		product.setCreatedDate(LocalDate.now());
+		product.setCategory("Mobile");
+		
+		ProductEntity productEntity = new ProductEntity();
+		beanUtils.copyProperties(product, productEntity);
+		
+		when(productRepository.save(productEntity)).thenReturn(productEntity);
+		
+		
+		
+		productService.saveProduct(product);
+		
+		assertEquals("IPhoneY++",product.getProductName());
+	}
 
 }

@@ -22,17 +22,14 @@ public class ProductService implements IProductService {
 	@Override
 	public Product saveProduct(Product product) {
 
-		// convert product model to product entity
 		ProductEntity productEntity = new ProductEntity();
 		BeanUtils.copyProperties(product, productEntity);
 
 		ProductEntity newProductEntity = productRepository.save(productEntity);
 
-		// convert product entity to product model
-		Product newProduct = new Product();
-		BeanUtils.copyProperties(newProductEntity, newProduct);
+		product.setProductId(newProductEntity.getProductId());
 
-		return newProduct;
+		return product;
 	}
 
 	@Override
